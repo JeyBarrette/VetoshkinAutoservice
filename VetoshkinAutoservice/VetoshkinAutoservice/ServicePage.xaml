@@ -39,5 +39,9 @@
                 </Binding>
             </Image.Source>
         </Image>
+        <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
+        <TextBlock Text="{Binding Cost}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+        <TextBlock Text="{Binding Duration}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" FontSize="20"></TextBlock>
+        <TextBlock Text="{Binding Discount}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
     </Grid>
 </Page>

@@ -23,6 +23,9 @@ namespace VetoshkinAutoservice
         public ServicePage()
         {
             InitializeComponent();
+
+            var currentServices = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
+            ServiceListView.ItemsSource = currentServices;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
