@@ -15,6 +15,16 @@ namespace VetoshkinAutoservice
     
     public partial class Vetoshkin_autoserviceEntities : DbContext
     {
+        private static Vetoshkin_autoserviceEntities _context;
+
+        public static Vetoshkin_autoserviceEntities GetContext()
+        {
+            if (_context == null)
+                _context = new Vetoshkin_autoserviceEntities();
+
+            return _context;
+        }
+
         public Vetoshkin_autoserviceEntities()
             : base("name=Vetoshkin_autoserviceEntities")
         {
