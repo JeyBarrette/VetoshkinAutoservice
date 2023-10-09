@@ -93,6 +93,11 @@
     <Compile Include="ProductSale.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Service.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
@@ -145,11 +150,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -176,12 +176,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\service_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\service_logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\service_logo.ico" />
+    <Resource Include="Images\service_logo.png" />
     <Content Include="VetoshkinModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VetoshkinModel.Context.cs</LastGenOutput>
@@ -195,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

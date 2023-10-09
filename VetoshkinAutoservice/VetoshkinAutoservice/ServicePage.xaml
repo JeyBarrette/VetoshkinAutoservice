@@ -33,7 +33,7 @@
                 <Binding Path="MainImagePath">
                     <Binding.TargetNullValue>
                         <ImageSource>
-                            Resources/service_logo.png
+                            Images/service_logo.png
                         </ImageSource>
                     </Binding.TargetNullValue>
                 </Binding>
