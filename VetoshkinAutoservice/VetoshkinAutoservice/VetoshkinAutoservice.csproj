@@ -107,9 +107,6 @@
     <Compile Include="ServicePhoto.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>VetoshkinModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Tag.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
