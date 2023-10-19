@@ -42,11 +42,17 @@ namespace VetoshkinAutoservice
             if (_currentService.Cost == 0)
                 errors.AppendLine("Укажите стоимость услуги");
 
-            if (string.IsNullOrWhiteSpace(_currentService.Discount.ToString()))
+            if (_currentService.Discount < 0 || _currentService.Discount > 100)
                 errors.AppendLine("Укажите скидку");
 
             if (string.IsNullOrWhiteSpace(_currentService.Duration))
                 errors.AppendLine("Укажите длительность услуги");
+
+
+            if (string.IsNullOrWhiteSpace(_currentService.Discount.ToString()))
+            {
+                _currentService.Discount = 0;
+            }    
 
             if (errors.Length > 0)
             {
