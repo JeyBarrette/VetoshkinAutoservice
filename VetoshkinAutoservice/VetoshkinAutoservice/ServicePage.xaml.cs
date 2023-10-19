@@ -24,7 +24,7 @@ namespace VetoshkinAutoservice
         {
             InitializeComponent();
 
-            var currentServices = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
+            var currentServices = Vetoshkin_autoserviceEntities2.GetContext().Service.ToList();
             ServiceListView.ItemsSource = currentServices;
             ComboType.SelectedIndex = 0;
             UpdateServices();
@@ -32,7 +32,7 @@ namespace VetoshkinAutoservice
 
         private void UpdateServices()
         {
-            var currentServices = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
+            var currentServices = Vetoshkin_autoserviceEntities2.GetContext().Service.ToList();
             if (ComboType.SelectedIndex == 0)
             {
                 currentServices = currentServices.Where(p => (p.Discount >= 0 && p.Discount <= 100)).ToList();
@@ -72,7 +72,7 @@ namespace VetoshkinAutoservice
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage(null));
+            Manager.MainFrame.Navigate(new AddEditPage());
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -93,24 +93,6 @@ namespace VetoshkinAutoservice
         private void RButtonDown_Checked(object sender, RoutedEventArgs e)
         {
             UpdateServices();
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new AddEditPage(null));
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Service));
-        }
-
-        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (Visibility == Visibility.Visible)
-            {
-                ServiceListView.ItemsSource = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
-            }
         }
     }
 }

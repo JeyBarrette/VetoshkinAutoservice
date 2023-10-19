@@ -13,20 +13,20 @@ namespace VetoshkinAutoservice
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Vetoshkin_autoserviceEntities : DbContext
+    public partial class Vetoshkin_autoserviceEntities2 : DbContext
     {
-        private static Vetoshkin_autoserviceEntities _context;
+        private static Vetoshkin_autoserviceEntities2 _context;
 
-        public static Vetoshkin_autoserviceEntities GetContext()
+        public static Vetoshkin_autoserviceEntities2 GetContext()
         {
             if (_context == null)
-                _context = new Vetoshkin_autoserviceEntities();
+                _context = new Vetoshkin_autoserviceEntities2();
 
             return _context;
         }
 
-        public Vetoshkin_autoserviceEntities()
-            : base("name=Vetoshkin_autoserviceEntities")
+        public Vetoshkin_autoserviceEntities2()
+            : base("name=Vetoshkin_autoserviceEntities2")
         {
         }
     
@@ -45,6 +45,7 @@ namespace VetoshkinAutoservice
         public virtual DbSet<ProductSale> ProductSale { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
     }
 }
