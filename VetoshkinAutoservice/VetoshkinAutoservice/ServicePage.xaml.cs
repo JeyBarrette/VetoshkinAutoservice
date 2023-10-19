@@ -112,5 +112,35 @@ namespace VetoshkinAutoservice
                 ServiceListView.ItemsSource = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
             }
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentService = (sender as Button).DataContext as Service;
+
+            var currentClientServices = Vetoshkin_autoserviceEntities.GetContext().ClientService.ToList();
+            currentClientServices = currentClientServices.Where(p => p.ServiceID == currentService.ID).ToList();
+
+            if (currentClientServices.Count != 0)
+                MessageBox.Show("Невозможно выполнить удаление, так как существуют записи на эту услугу!");
+
+            else
+            {
+                if (MessageBox.Show("Вы точно хотите выполнить удаление?", "Внимание!",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        Vetoshkin_autoserviceEntities.GetContext().Service.Remove(currentService);
+                        Vetoshkin_autoserviceEntities.GetContext().SaveChanges();
+                        ServiceListView.ItemsSource = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
+                        UpdateServices();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+            }
+        }
     }
 }
