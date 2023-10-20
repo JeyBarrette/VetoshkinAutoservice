@@ -107,6 +107,12 @@
     <Compile Include="ServicePhoto.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>VetoshkinModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tag.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
@@ -142,6 +148,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,16 +196,6 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="VetoshkinModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VetoshkinModel.edmx</DependentUpon>
-      <LastGenOutput>VetoshkinModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="VetoshkinModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VetoshkinModel.edmx</DependentUpon>
-      <LastGenOutput>VetoshkinModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Услуги автосервиса\picture.png" />
     <Resource Include="Услуги автосервиса\diz.jpg" />
     <Resource Include="Услуги автосервиса\rulevoe-upravlenie-avtomobilya.jpg" />
@@ -214,6 +214,18 @@
     <Resource Include="Услуги автосервиса\Топливная система.png" />
     <Resource Include="Услуги автосервиса\Шиномонтаж.jpg" />
     <Resource Include="Услуги автосервиса\Электрика.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="VetoshkinModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VetoshkinModel.edmx</DependentUpon>
+      <LastGenOutput>VetoshkinModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="VetoshkinModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VetoshkinModel.edmx</DependentUpon>
+      <LastGenOutput>VetoshkinModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
