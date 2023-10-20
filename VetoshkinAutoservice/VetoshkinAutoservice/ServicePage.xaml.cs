@@ -119,6 +119,7 @@ namespace VetoshkinAutoservice
             if (Visibility == Visibility.Visible)
             {
                 ServiceListView.ItemsSource = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
+                UpdateServices();
             }
         }
 
