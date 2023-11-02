@@ -43,11 +43,13 @@ namespace VetoshkinAutoservice
                 errors.AppendLine("Укажите стоимость услуги");
 
             if (_currentService.Discount < 0 || _currentService.Discount > 100)
-                errors.AppendLine("Укажите скидку");
+                errors.AppendLine("Укажите скидку от 0 до 100");
 
-            if (string.IsNullOrWhiteSpace(_currentService.Duration))
+            if (_currentService.Duration == 0)
                 errors.AppendLine("Укажите длительность услуги");
 
+            if (_currentService.Duration > 240 || _currentService.Duration < 0)
+                errors.AppendLine("Длительность не может быть больше 240 минут или меньше 0");
 
             if (string.IsNullOrWhiteSpace(_currentService.Discount.ToString()))
             {
@@ -58,6 +60,29 @@ namespace VetoshkinAutoservice
             {
                 MessageBox.Show(errors.ToString());
                 return;
+            }
+
+            var allServices = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
+            allServices = allServices.Where(p => p.Title == _currentService.Title).ToList();
+
+            if (allServices.Count == 0)
+            {
+                if (allServices.Count == 0)
+                    Vetoshkin_autoserviceEntities.GetContext().Service.Add(_currentService);
+                try
+                {
+                    Vetoshkin_autoserviceEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Уже существует такая услуга");
             }
 
             if (_currentService.ID == 0)
