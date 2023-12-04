@@ -109,9 +109,10 @@ namespace VetoshkinAutoservice
             Manager.MainFrame.Navigate(new AddEditPage(null));
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        public void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Service));
+            EditCheck.EdCheck = true;
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

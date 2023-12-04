@@ -65,7 +65,7 @@ namespace VetoshkinAutoservice
             var allServices = Vetoshkin_autoserviceEntities.GetContext().Service.ToList();
             allServices = allServices.Where(p => p.Title == _currentService.Title).ToList();
 
-            if (allServices.Count == 0)
+            if (allServices.Count == 0 || (_currentService.ID != 0 && allServices.Count <= 1))
             {
                 if (allServices.Count == 0)
                     Vetoshkin_autoserviceEntities.GetContext().Service.Add(_currentService);
@@ -83,20 +83,6 @@ namespace VetoshkinAutoservice
             else
             {
                 MessageBox.Show("Уже существует такая услуга");
-            }
-
-            if (_currentService.ID == 0)
-                Vetoshkin_autoserviceEntities.GetContext().Service.Add(_currentService);
-
-            try
-            {
-                Vetoshkin_autoserviceEntities.GetContext().SaveChanges();
-                MessageBox.Show("Информация сохранена");
-                Manager.MainFrame.GoBack();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
             }
         }
     }

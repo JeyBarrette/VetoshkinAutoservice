@@ -78,22 +78,102 @@ namespace VetoshkinAutoservice
         private void TBStart_TextChanged(object sender, TextChangedEventArgs e)
         {
             string s = TBStart.Text;
-
-            if (s.Length < 3 || !s.Contains(':'))
+            if (s.Length < 4 || !s.Contains(':'))
                 TBEnd.Text = "";
             else
             {
                 string[] start = s.Split(new char[] { ':' });
+                Console.WriteLine(start);
                 int startHour = Convert.ToInt32(start[0].ToString()) * 60;
                 int startMin = Convert.ToInt32(start[1].ToString());
-
                 int sum = startHour + startMin + _currentService.Duration;
-
                 int EndHour = sum / 60;
+                if (EndHour > 23)
+                {
+                    EndHour -= 24;
+                }
                 int EndMin = sum % 60;
-                s = EndHour.ToString() + ":" + EndMin.ToString();
+
+                if (EndMin <= 9)
+                {
+                    s = EndHour.ToString() + ":0" + EndMin.ToString();
+                }
+                //s = EndHour.ToString() + ":0" + EndMin.ToString();
+                else
+                {
+                    s = EndHour.ToString() + ":" + EndMin.ToString();
+                }
+
                 TBEnd.Text = s;
             }
+        }
+
+        private void TBStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //проверка ввода только цифры
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+            {
+                e.Handled = true;
+                return;
+            }
+            //текущее значение текста в TextBox
+            string currentValue = ((TextBox)sender).Text;
+            if (currentValue.Length == 0)
+            {
+                int hour1 = Convert.ToInt32(e.Text);
+                TBStart.Clear();
+                if (hour1 > 2)
+                {
+                    currentValue = "";
+                    currentValue = "0" + (hour1).ToString();
+                    TBStart.Text = "";
+
+                    TBStart.Text = currentValue;
+                    e.Handled = true;
+                }
+            }
+            if (currentValue.Length == 1)
+            {
+                if (currentValue[0] == '2')
+                {
+                    int hours2 = Convert.ToInt32(e.Text);
+                    Console.WriteLine(hours2);
+                    if (hours2 > 3)
+                    {
+                        e.Handled = true; //игнорируем ввод
+                        return;
+                    }
+                }
+            }
+
+            if (currentValue.Length == 3)
+            {
+                int minute = Convert.ToInt32(e.Text);
+                if (minute > 5)
+                {
+                    e.Handled = true; //игнорируем ввод
+                    return;
+                }
+
+
+            }
+
+            //Если введено 2 цифры и след символ не ":", добавляем ":"
+            if (currentValue.Length == 2 && e.Text != ":")
+            {
+                currentValue += ":";
+            }
+
+            // Если введено 5 символов (формат "hh:mm"), то не даем вводить больше
+            if (currentValue.Length > 4)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Обновляем значение текста в TextBox
+            ((TextBox)sender).Text = currentValue;
+            ((TextBox)sender).SelectionStart = ((TextBox)sender).Text.Length;
         }
     }
 }
